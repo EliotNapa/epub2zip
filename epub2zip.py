@@ -66,11 +66,13 @@ def main():
                     in_file = os.path.join(temp_dir, folder, middle_folder, pic)
                     # print(in_file)
                     zf.write(in_file, os.path.basename(pic))
-        shutil.rmtree(folder)
+        work_folder = os.path.join(temp_dir, folder)
+        shutil.rmtree(work_folder)
 
 def unzip_files(target, temp_dir) :
     target_folder = os.path.basename(target).split('.')[0]
-    with zipfile.ZipFile(target, 'r') as zf:
+    target_path = os.path.join(temp_dir, target)
+    with zipfile.ZipFile(target_path, 'r') as zf:
         for file in zf.namelist():
             file_path = ''
             # print(file)
